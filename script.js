@@ -1,34 +1,24 @@
-/*  your css code here. If applicable */
-*{
-	margin:0;
-	padding:0;
-	box-sizing:border-box;
-}
-body{
-	background-color: #9b59b6;
-	display:flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-		gap:10px;
-}
+//your JS code here. If required.
+const buttons = document.querySelectorAll('.btn');
+const stopBtn = document.querySelector('.stop');
 
-.btn,.stop{
-	border:none;
-	background-color:#5e3370;
-	height:40px;
-	width:80px;
-	padding:10px 10px;
-	border-radius:5px;
-	color:white;
-	font-family:saddlebrown;
-	font-size:17px;
-	transition:0.3s;
-	
-}
-.btn:hover {
-  background-color: #7d4a92;
-}
-.stop:hover {
-  background-color: #7d4a92;
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    stopSounds();
+    const soundId = btn.innerText;
+    const audioEl = document.getElementById(soundId);
+    if (audioEl) {
+      audioEl.play();
+    }
+  });
+});
+
+stopBtn.addEventListener('click', stopSounds);
+
+function stopSounds() {
+  const audios = document.querySelectorAll('audio');
+  audios.forEach(audio => {
+    audio.pause();
+    audio.currentTime = 0;
+  });
 }
