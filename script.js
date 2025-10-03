@@ -1,45 +1,34 @@
-// Use the required sound names (files are expected in ./sounds/)
-const sounds = ['applause', 'boo', 'gasp', 'tada', 'victory', 'wrong'];
+/*  your css code here. If applicable */
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+body{
+	background-color: #9b59b6;
+	display:flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+		gap:10px;
+}
 
-const buttons = document.getElementById('buttons');
-
-// Build a play button for each sound
-sounds.forEach((sound) => {
-  // hidden audio element
-  const audio = document.createElement('audio');
-  audio.id = sound;
-  audio.src = ./sounds/${sound}.mp3;
-  audio.preload = 'auto';
-  document.body.appendChild(audio);
-
-  // visible button
-  const btn = document.createElement('button');
-  btn.className = 'btn';
-  btn.textContent = sound;
-
-  btn.addEventListener('click', () => {
-    stopSounds();
-    const el = document.getElementById(sound);
-    el.currentTime = 0;
-    const p = el.play();    
-  });
-
-  buttons.appendChild(btn);
-});
-
-// Stop button (DO NOT give it .btn so tests count 6 .btn only)
-const stopBtn = document.createElement('button');
-stopBtn.className = 'stop';
-stopBtn.textContent = 'stop';
-stopBtn.addEventListener('click', stopSounds);
-buttons.appendChild(stopBtn);
-
-// Pause & reset all
-function stopSounds() {
-  sounds.forEach((sound) => {
-    const el = document.getElementById(sound);
-    if (!el) return;
-    el.pause();
-    el.currentTime = 0;
-  });
+.btn,.stop{
+	border:none;
+	background-color:#5e3370;
+	height:40px;
+	width:80px;
+	padding:10px 10px;
+	border-radius:5px;
+	color:white;
+	font-family:saddlebrown;
+	font-size:17px;
+	transition:0.3s;
+	
+}
+.btn:hover {
+  background-color: #7d4a92;
+}
+.stop:hover {
+  background-color: #7d4a92;
 }
