@@ -1,5 +1,5 @@
 /*  your css code here. If applicable */
-body {
+/* body {
 	background-color: #FF5CFF;
 }
 
@@ -11,4 +11,73 @@ body {
 	justify-content: center;
 	align-content: center;
 	
+} */
+
+
+/* General page setup */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Heading */
+h1 {
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  color: #333;
+  letter-spacing: 1px;
+}
+
+/* Buttons wrapper */
+#buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+/* General button style */
+.btn, .stop {
+  padding: 14px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+/* Sound buttons */
+.btn {
+  background: #007bff;
+}
+
+.btn:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Stop button */
+.stop {
+  background: #dc3545;
+}
+
+.stop:hover {
+  background: #a71d2a;
+  transform: scale(1.05);
+}
+
+/* Hide audio elements */
+#audio-container {
+  display: none;
 }
