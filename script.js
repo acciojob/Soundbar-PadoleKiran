@@ -1,77 +1,45 @@
-// // List of sounds (must match files inside /sounds folder)
-// const sounds = ['sound1', 'sound2', 'sound3'];
+// Use the required sound names (files are expected in ./sounds/)
+const sounds = ['applause', 'boo', 'gasp', 'tada', 'victory', 'wrong'];
 
-// const buttonsDiv = document.getElementById('buttons');
-// const audioContainer = document.getElementById('audio-container');
-// let currentAudio = null;
+const buttons = document.getElementById('buttons');
 
-// // Create <audio> elements + buttons dynamically
-// sounds.forEach(sound => {
-//   // audio tag
-//   const audio = document.createElement('audio');
-//   audio.id = sound;
-//   audio.src = `sounds/${sound}.mp3`;
-//   audioContainer.appendChild(audio);
-
-//   // button
-//   const btn = document.createElement('button');
-//   btn.classList.add('btn');
-//   btn.innerText = sound;
-
-//   btn.addEventListener('click', () => {
-//     stopSound();
-//     currentAudio = document.getElementById(sound);
-//     currentAudio.play();
-//   });
-
-//   buttonsDiv.appendChild(btn);
-// });
-
-// // stop button
-// document.querySelector('.stop').addEventListener('click', stopSound);
-
-// function stopSound() {
-//   if (currentAudio) {
-//     currentAudio.pause();
-//     currentAudio.currentTime = 0;
-//   }
-// }
-
-// Match with files inside /sounds
-const sounds = ['1', '2', '3', '4', '5', '6'];
-
-const buttonsDiv = document.getElementById('buttons');
-const audioContainer = document.getElementById('audio-container');
-let currentAudio = null;
-
-// Create <audio> elements + buttons dynamically
-sounds.forEach(sound => {
-  // create <audio>
+// Build a play button for each sound
+sounds.forEach((sound) => {
+  // hidden audio element
   const audio = document.createElement('audio');
   audio.id = sound;
-  audio.src = `sounds/${sound}.mp3`;
-  audioContainer.appendChild(audio);
+  audio.src = ./sounds/${sound}.mp3;
+  audio.preload = 'auto';
+  document.body.appendChild(audio);
 
-  // create <button>
+  // visible button
   const btn = document.createElement('button');
-  btn.classList.add('btn');
-  btn.innerText = sound;   // Cypress expects text like "1", "2", "3"
+  btn.className = 'btn';
+  btn.textContent = sound;
 
   btn.addEventListener('click', () => {
-    stopSound();
-    currentAudio = document.getElementById(sound);
-    currentAudio.play();
+    stopSounds();
+    const el = document.getElementById(sound);
+    el.currentTime = 0;
+    const p = el.play();    
   });
 
-  buttonsDiv.appendChild(btn);
+  buttons.appendChild(btn);
 });
 
-// stop button
-document.querySelector('.stop').addEventListener('click', stopSound);
+// Stop button (DO NOT give it .btn so tests count 6 .btn only)
+const stopBtn = document.createElement('button');
+stopBtn.className = 'stop';
+stopBtn.textContent = 'stop';
+stopBtn.addEventListener('click', stopSounds);
+buttons.appendChild(stopBtn);
 
-function stopSound() {
-  if (currentAudio) {
-    currentAudio.pause();
-    currentAudio.currentTime = 0;
-  }
+// Pause & reset all
+function stopSounds() {
+  sounds.forEach((sound) => {
+    const el = document.getElementById(sound);
+    if (!el) return;
+    el.pause();
+    el.currentTime = 0;
+  });
 }
